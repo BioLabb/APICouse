@@ -1,5 +1,6 @@
 package com.app.course.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -9,11 +10,37 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
+    @Column(unique = true)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "role")
-    @Column(name = "subRole")
     private Set<SubRole> subRoles;
 
+    public Role(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<SubRole> getSubRoles() {
+        return subRoles;
+    }
+
+    public void setSubRoles(Set<SubRole> subRoles) {
+        this.subRoles = subRoles;
+    }
 }

@@ -64,14 +64,17 @@ public class CourseServiceIpm implements CourseService {
     public ResponseEntity<RepositoryObject> updateCourseById(Course newCourse, long id) {
         Course updateCourse = repository.findById(id).map(item -> {
             item.setClipDemo(newCourse.getClipDemo());
+            item.setLevelRequire(newCourse.getLevelRequire());
             item.setName(newCourse.getName());
             item.setTitle(newCourse.getTitle());
             item.setDescription(newCourse.getDescription());
             item.setPrice(newCourse.getPrice());
+            item.setRole(newCourse.getRole());
+            item.setSubRole(newCourse.getSubRole());
             return item;
         }).orElse(null);
         return updateCourse != null ?
-                Response.result(HttpStatus.OK, Status.OK, QUERY_SUCCESS, "") :
-                Response.result(HttpStatus.NOT_FOUND, Status.FAILED, CANT_NOT_FOUND, "");
+                Response.result(HttpStatus.OK, Status.OK, QUERY_SUCCESS, repository.save(updateCourse)) :
+                Response.result(HttpStatus.NOT_FOUND, Status.FAILED, CANT_NOT_FOUND + id, "");
     }
 }

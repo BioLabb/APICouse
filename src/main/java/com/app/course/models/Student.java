@@ -16,8 +16,8 @@ public class Student {
     @MapsId
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
-    @Column(name = "buy")
     private Set<Buy> buys;
     /*  SET COLUM  */
     private int level;
@@ -25,6 +25,7 @@ public class Student {
 
     public Student() {
     }
+
 
     public Student(User user, Set<Buy> buys, int level, String experience) {
         this.user = user;

@@ -16,4 +16,9 @@ public class Response {
                 new RepositoryObject(status,message,object)
         );
     }
+    public static ResponseEntity<RepositoryObject> result(HttpStatus httpStatusCode, String status, String message){
+        return ResponseEntity.status(httpStatusCode).body(
+                new RepositoryObject(status,message)
+        );
+    }
 }

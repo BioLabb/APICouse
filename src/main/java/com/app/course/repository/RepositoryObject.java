@@ -3,13 +3,18 @@ package com.app.course.repository;
 public class RepositoryObject {
     private String status;
     private String message;
-    private Object object;
+    private Object data;
     public RepositoryObject(){}
 
-    public RepositoryObject(String status, String message, Object object) {
+    public RepositoryObject(String status, String message, Object data) {
         this.status = status;
         this.message = message;
-        this.object = object;
+        this.data = data;
+    }
+    public RepositoryObject(String status, String message) {
+        this.status = status;
+        this.message = message;
+        this.data = null;
     }
 
     public String getStatus() {
@@ -28,11 +33,11 @@ public class RepositoryObject {
         this.message = message;
     }
 
-    public Object getObject() {
-        return object;
+    public Object getData() {
+        return data;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

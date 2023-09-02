@@ -1,5 +1,6 @@
 package com.app.course.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -14,23 +15,25 @@ public class Course {
     private long id;
 
     // -----set fk------
+    @JsonIgnore
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     private Set<Unit> unit;
     @ManyToOne
     @JoinColumn(name = "language_id")
     private Language language;
-    @OneToOne
-    @JoinColumn(name = "levelRequire")
+    @ManyToOne
+    @JoinColumn(name = "levelRequire_id")
     private LevelRequire levelRequire;
+    @JsonIgnore
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     private Set<Test> test;
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
-    @Column(name = "buy")
     private Set<Buy> buys;
     @OneToMany(mappedBy = "course")
     @Column(name = "rate")
     private Set<Rate> rates;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
     @OneToOne

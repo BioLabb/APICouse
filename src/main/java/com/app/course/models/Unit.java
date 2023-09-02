@@ -1,5 +1,6 @@
 package com.app.course.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -11,14 +12,16 @@ public class Unit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "course_id",nullable = false)
     private Course course;
 
-    @OneToMany(mappedBy = "unit")
+    @JsonIgnore
+    @OneToMany(mappedBy = "unit",cascade = CascadeType.ALL)
     @Column(name = "section")
     private Set<Section> sections;
     private String title;
 
+    public Unit(){}
     public Unit(Course course, String title) {
         this.course = course;
         this.title = title;

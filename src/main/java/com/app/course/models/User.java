@@ -24,6 +24,7 @@ public class User implements Serializable {
     private Set<Course> courses;
     @Column(unique = true)
     private String userName;
+    @Column(nullable = false)
     private String passWorld;
     private String firstName;
     private String lastName;

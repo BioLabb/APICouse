@@ -34,4 +34,9 @@ public class UnitController {
     public ResponseEntity<RepositoryObject> updateUnit(@RequestBody Unit unit, @PathVariable int id){
         return service.updateUnit(unit,id);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RepositoryObject> deleteUnitById(@PathVariable int id){
+        return service.deleteUnitById(id);
+    }
 }
