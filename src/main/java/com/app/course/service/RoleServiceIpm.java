@@ -36,11 +36,10 @@ public class RoleServiceIpm implements RoleService {
     @Override
     public ResponseEntity<RepositoryObject> insertRole(Role role) {
         try {
-            Response.result(HttpStatus.OK, Status.OK, QUERY_SUCCESS, repository.save(role));
+           return Response.result(HttpStatus.OK, Status.OK, QUERY_SUCCESS, repository.save(role));
         } catch (DataAccessException e) {
             return Response.result(HttpStatus.NOT_IMPLEMENTED, Status.ERR, e.getMessage());
         }
-        return null;
     }
 
     @Override

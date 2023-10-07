@@ -30,13 +30,13 @@ public class Course {
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     private Set<Buy> buys;
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
-    @Column(name = "rate")
     private Set<Rate> rates;
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "subRole_id")
     private SubRole subRole;
     @ManyToOne

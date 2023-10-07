@@ -1,30 +1,31 @@
 package com.app.course.models;
 
+import com.app.course.models.keys.StudentCourseKey;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "buy")
-public class Buy {
+public class Buy implements Serializable {
     @EmbeddedId
-    BuyKey id;
+    StudentCourseKey id;
 
     @ManyToOne
-    @MapsId("courseId")
-    @JoinColumn(name = "course_id",nullable = false)
+    @MapsId("course_id")
+    @JoinColumn(name = "course_id")
     private Course course;
 
     @ManyToOne
     @MapsId("student_id")
-    @JoinColumn(name = "student_id",nullable = false)
+    @JoinColumn(name = "student_id")
     private Student student;
     @Temporal(TemporalType.DATE)
     private Date dateBuy;
 
     private Boolean studentComplete;
     public Buy(){
-
     }
 
     public Course getCourse() {
@@ -57,5 +58,13 @@ public class Buy {
 
     public void setStudentComplete(Boolean studentComplete) {
         this.studentComplete = studentComplete;
+    }
+
+    public StudentCourseKey getId() {
+        return id;
+    }
+
+    public void setId(StudentCourseKey id) {
+        this.id = id;
     }
 }

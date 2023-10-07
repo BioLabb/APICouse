@@ -1,7 +1,7 @@
 package com.app.course.controllers;
 
 import com.app.course.models.Buy;
-import com.app.course.models.BuyKey;
+import com.app.course.models.keys.StudentCourseKey;
 import com.app.course.repository.RepositoryObject;
 import com.app.course.service.BuyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +19,18 @@ public class BuyController {
         return service.getAllBuy();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<RepositoryObject> getBuyById(@RequestBody BuyKey id) {
-        return service.getBuyById(id);
+    @GetMapping("/student/{studentId}/course/{courseId}")
+    public ResponseEntity<RepositoryObject> getBuyById(@PathVariable long studentId,@PathVariable long courseId) {
+        return service.getBuyById(studentId,courseId);
     }
 
-    @PostMapping("")
-    public ResponseEntity<RepositoryObject> insertBuy(@RequestBody Buy buy) {
-        return service.insertBuy(buy);
+    @PostMapping("student/{studentId}/course/{courseId}")
+    public ResponseEntity<RepositoryObject> insertBuy(@RequestBody Buy buy,@PathVariable long studentId,@PathVariable long courseId) {
+        return service.insertBuy(buy,studentId,courseId);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<RepositoryObject> deleteBuyId(@RequestBody BuyKey id) {
-        return service.deleteBuyById(id);
+    @DeleteMapping("/student/{studentId}/course/{courseId}")
+    public ResponseEntity<RepositoryObject> deleteBuyId(@PathVariable long studentId, @PathVariable long courseId) {
+        return service.deleteBuyById(studentId,courseId);
     }
 }

@@ -10,15 +10,20 @@ import java.util.Set;
 public class Student {
     /*  PRIMARY KEY  */
     @Id
+    @JoinColumn(name = "user_id")
     private long id;
     @JsonIgnore
     @OneToOne
     @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     private Set<Buy> buys;
+    @JsonIgnore
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private Set<Rate> rates;
     /*  SET COLUM  */
     private int level;
     private String experience;
