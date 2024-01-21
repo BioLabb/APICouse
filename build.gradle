@@ -23,6 +23,9 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// Spring Boot Starter Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation 'commons-io:commons-io:2.6'
 
